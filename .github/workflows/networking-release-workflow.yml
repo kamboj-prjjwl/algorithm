@@ -18,7 +18,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Run PowerShell script
-        run: | 
-              ./eng/scripts/Create-Network-Release-Branch-Swagger-PS.ps1
+      - name: Fetch API version 
+        id: fetch_api_version 
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_REPOSITORY: ${{ github.repository }} 
+        run: |
+              ./eng/scripts/Get-ApiVersion.ps1
+        shell: pwsh
+
+      - name: Create Swagger Release Branch
+        env: 
+          API_VERSION: ${{ steps.fetch_api_version.outputs.api_version }} 
+        run: |
+              ./eng/scripts/Create-NetworkReleaseBranchSwagger-PS.ps1
         shell: pwsh
