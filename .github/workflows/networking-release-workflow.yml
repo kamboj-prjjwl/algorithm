@@ -25,12 +25,12 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }} 
         run: |
               $lastMergedPR = Invoke-RestMethod -Headers @{ Authorization = "token $env:GITHUB_TOKEN" } -Uri "https://api.github.com/repos/$env:GITHUB_REPOSITORY/pulls?state=closed&sort=updated&direction=desc" -Method Get | Where-Object { $_.merged_at -ne $null } | Select-Object -First 1 
-              $apiVersion = $lastMergedPR.title -match 'API-VER-\d{4}-\d{2}-\d{2}' | Out-Null 
-              $apiVersion = $matches[0] 
+              $apiVersionLabel = $lastMergedPR.labels | Where-Object { $_.name -match 'API-VER-\d{4}-\d{2}-\d{2}' } | Select-Object -First 1 
+              $apiVersion = $apiVersionLabel.name 
               $apiVersionDate = [datetime]::ParseExact($apiVersion.Substring(8), 'yyyy-MM-dd', $null) 
               $updatedApiVersionDate = $apiVersionDate.AddMonths(2) 
               $updatedApiVersion = "API-VER-" + $updatedApiVersionDate.ToString('yyyy-MM-dd') 
-              echo "::set-output name=api_version::$updatedApiVersion"
+              echo "::set-output name=api_version::$updatedApiVersion"       
         shell: pwsh
 
       - name: Create Swagger Release Branch
