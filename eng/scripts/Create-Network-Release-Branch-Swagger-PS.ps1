@@ -1,20 +1,6 @@
-name: Checkout New Branch for Swagger & .NET
+# create_new_branch.ps1
 
-on:
-  pull_request:
-    types: [closed]
-    branches:
-      - main
-
-jobs:
-  checkout_new_branch:
-    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'xyz'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Run PowerShell script
-        run: pwsh create_new_branch.ps1
-
+git config --global user.email "kamboj.prjwl@outlook.com"
+git config --global user.name "kamboj-prjjwl"
+git checkout -b release_2
+git push origin release_2
