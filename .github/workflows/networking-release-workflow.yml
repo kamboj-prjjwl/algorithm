@@ -39,3 +39,11 @@ jobs:
         run: |
               ./eng/scripts/Create-NetworkReleaseBranchSwagger.ps1 -API_VERSION ${{ steps.fetch_api_version.outputs.api_version }}
         shell: pwsh
+
+      - name: Send email notification 
+        env: 
+          BRANCH_NAME: ${{ steps.create_branch.outputs.branch_name }} 
+          EMAIL_RECIPIENT: "kamboj.prjwl@gmail.com" 
+        run: |
+         - ./eng/scripts/SendEmail.ps1 -BRANCH_NAME ${{ steps.create_branch.outputs.branch_name }} -EMAIL_RECIPIENT ${{ env.EMAIL_RECIPIENT }}
+        shell: pwsh
