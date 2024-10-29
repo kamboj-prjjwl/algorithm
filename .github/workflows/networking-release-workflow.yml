@@ -35,7 +35,7 @@ jobs:
 
       - name: Create Swagger Release Branch
         env: 
-          API_VERSION: ${{ steps.fetch_api_version.outputs.api_version }} 
+          API_VERSION: ${{ steps.fetch_api_version.outputs.api_version }}        
         run: |
-              ./eng/scripts/Create-NetworkReleaseBranchSwagger-PS.ps1
+              ./eng/scripts/Create-NetworkReleaseBranchSwagger.ps1 -API_VERSION ${{ steps.fetch_api_version.outputs.api_version }}
         shell: pwsh
