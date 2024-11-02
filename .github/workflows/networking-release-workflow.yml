@@ -23,8 +23,9 @@ jobs:
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           GITHUB_REPOSITORY: ${{ github.repository }} 
+          PR_ID: ${{ github.event.pull_request.number }}
         run: |
-              ./eng/scripts/Fetch-SwaggerAPIVersion.ps1 -GITHUB_TOKEN ${{ env.GITHUB_TOKEN }} -REPO ${{ env.REPO }} -PR_NUMBER ${{ env.PR_NUMBER }}  
+              ./eng/scripts/Fetch-SwaggerAPIVersion.ps1 -GITHUB_TOKEN ${{ env.GITHUB_TOKEN }} -REPO ${{ env.GITHUB_REPOSITORY }} -PR_NUMBER $PR_ID 
         shell: pwsh
 
       - name: Create Swagger Release Branch
