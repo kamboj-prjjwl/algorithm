@@ -35,13 +35,17 @@ jobs:
               ./eng/scripts/Create-NetworkReleaseBranchSwagger.ps1 -API_VERSION ${{ steps.fetch_api_version.outputs.api_version }}
         shell: pwsh
 
-      - name: Create and add label to PR 
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-          REPO: ${{ github.repository }} 
-          PR_NUMBER: ${{ github.event.pull_request.number }} 
-          NEW_LABEL: "SWG-API-VER-${{ steps.fetch_api_version.outputs.api_version }}"
+      # Web hook to send notifications regd new branch
+      # send email notification to ps team to cut new branch
+      #
+
+      # - name: Create and add label to PR 
+      #   env: 
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      #     REPO: ${{ github.repository }} 
+      #     PR_NUMBER: ${{ github.event.pull_request.number }} 
+      #     NEW_LABEL: "SWG-API-VER-${{ steps.fetch_api_version.outputs.api_version }}"
         
-        run: |
-             ./eng/scripts/CreateAndAddLabel.ps1 -GITHUB_TOKEN ${{ env.GITHUB_TOKEN }} -REPO ${{ env.REPO }} -PR_NUMBER ${{ env.PR_NUMBER }} -NEW_LABEL ${{ env.NEW_LABEL }}
-        shell: pwsh
+      #   run: |
+      #        ./eng/scripts/CreateAndAddLabel.ps1 -GITHUB_TOKEN ${{ env.GITHUB_TOKEN }} -REPO ${{ env.REPO }} -PR_NUMBER ${{ env.PR_NUMBER }} -NEW_LABEL ${{ env.NEW_LABEL }}
+      #   shell: pwsh
