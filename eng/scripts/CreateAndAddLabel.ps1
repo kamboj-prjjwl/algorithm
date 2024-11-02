@@ -25,4 +25,5 @@ $addLabelPayload = @{
     labels = @($NEW_LABEL)
 } | ConvertTo-Json
 
+
 Invoke-RestMethod -Uri "https://api.github.com/repos/$REPO/issues/$PR_NUMBER/labels" -Headers $headers -Method Post -Body $addLabelPayload
