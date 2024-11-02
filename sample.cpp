@@ -3,6 +3,5 @@ using namespace std;
 int main() {
 
     cout << "Hello, GitHub Actions   ";
-    return 0;
-    
+    return 0;   
 }
