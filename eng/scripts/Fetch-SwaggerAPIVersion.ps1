@@ -15,7 +15,7 @@ $headers = @{
 $labels = Invoke-RestMethod -Uri "https://api.github.com/repos/$REPO/issues/$PR_NUMBER/labels" -Headers $headers -Method Get
 
 # Increment API Version
-$apiVersionLabel = $labels | Where-Object { $_.name -match 'SWG_API-VER-\d{4}-\d{2}-\d{2}' } | Select-Object -First 1 
+$apiVersionLabel = $labels | Where-Object { $_.name -match 'SWG-API-VER-\d{4}-\d{2}-\d{2}' } | Select-Object -First 1 
 $apiVersion = $apiVersionLabel.name 
 $apiVersionDate = [datetime]::ParseExact($apiVersion.Substring(8), 'yyyy-MM-dd', $null) 
 $updatedApiVersionDate = $apiVersionDate.AddMonths(2) 
