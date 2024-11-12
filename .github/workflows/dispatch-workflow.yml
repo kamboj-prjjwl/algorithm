@@ -1,0 +1,19 @@
+name: Checkout New Branch
+
+on:
+  repository_dispatch:
+    types: [trigger-workflow]
+
+permissions: 
+  contents: write
+
+jobs:
+    run-powershell-scripts:
+        runs-on: windows-latest
+        steps:
+          - name: Create new branch
+            run: |
+                git config --global user.name 'kamboj.prjwl'
+                git config --global user.email 'kamboj.prjwl@outlook.com'
+                git checkout -b new-temp-branch-test
+                git push origin new-temp-brach-tests
