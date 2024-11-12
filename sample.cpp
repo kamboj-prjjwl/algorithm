@@ -2,7 +2,7 @@
 using namespace std;
 int main() {
 
-    cout << "Hello, GitHub Actions  s";
+    cout << "Hello, GitHub Actions  ";
     return 0;   
 
 }
