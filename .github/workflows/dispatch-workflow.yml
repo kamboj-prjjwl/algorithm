@@ -18,6 +18,6 @@ jobs:
             run: |
                 git config --global user.email "kamboj.prjwl@outlook.com"
                 git config --global user.name "kamboj-prjjwl"
-                git checkout -b $branchName
-                git push origin $branchName
+                git checkout -b temp-branch-test
+                git push origin temp-branch-test
 
