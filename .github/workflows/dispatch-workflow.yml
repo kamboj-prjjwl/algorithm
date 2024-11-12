@@ -11,9 +11,13 @@ jobs:
     run-powershell-scripts:
         runs-on: windows-latest
         steps:
+          - name: Checkout repository
+            uses: actions/checkout@v2
+        
           - name: Create new branch
             run: |
-                git config --global user.name 'kamboj.prjwl'
-                git config --global user.email 'kamboj.prjwl@outlook.com'
-                git checkout -b new-temp-branch-test
-                git push origin new-temp-brach-tests
+                git config --global user.email "kamboj.prjwl@outlook.com"
+                git config --global user.name "kamboj-prjjwl"
+                git checkout -b $branchName
+                git push origin $branchName
+
